@@ -1,0 +1,36 @@
+Three IP ranges :
+
+- The 10. seems to be for routers eth0
+- The 12. (20. in video) is for the vxlan
+- The 14. (30. in video) is for host eth1
+
+
+# In router1 :
+
+ip addr add 10.1.1.1/24 dev eth0
+
+ip link add name vxlan10 type vxlan id 10 dev eth0 local 10.1.1.1 remote 10.1.1.2 dstport 4789
+ip addr add 12.1.1.1/24 dev vxlan10
+
+brctl addbr br0
+brctl addif br0 eth0
+brctl addif br0 vxlan10
+
+ip link set dev eth0 up
+ip link set dev vxlan10 up
+
+
+
+# In router 2 (swap .1s and .2s) :
+
+ip addr add 10.1.1.2/24 dev eth0
+
+ip link add name vxlan10 type vxlan id 10 dev eth0 local 10.1.1.2 remote 10.1.1.1 dstport 4789
+ip addr add 12.1.1.2/24 dev vxlan10
+
+brctl addbr br0
+brctl addif br0 eth0
+brctl addif br0 vxlan10
+
+ip link set dev eth0 up
+ip link set dev vxlan10 up
