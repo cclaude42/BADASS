@@ -1,3 +1,5 @@
 FROM alpine:latest
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+COPY ./ip.sh /ip.sh
+
+CMD ["tail", "-f", "/dev/null"]
