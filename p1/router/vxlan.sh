@@ -5,12 +5,14 @@ if [ $# -eq 0 ]; then
     exit
 fi
 
-if [ $1 = "2" ]; then
+if [ $1 = "1" ]; then
+    LOCAL=1
+    REMOTE=2
+elif [ $1 = "2" ]; then
     LOCAL=2
     REMOTE=1
 else
-    LOCAL=1
-    REMOTE=2
+    exit
 fi
 
 # Start FRR
