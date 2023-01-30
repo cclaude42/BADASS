@@ -3,9 +3,11 @@
 # Start FRR
 /usr/lib/frr/docker-start &
 
-# Configure vtysh
-vtysh << EOF
-conf t
+# Wait for services
+sleep 5
+
+# Write conf file
+cat << EOF > /vtysh.conf
 hostname router_cclaude-1
 no ipv6 forwarding
 !
@@ -38,6 +40,9 @@ router ospf
 line vty
 !
 EOF
+
+# Configure vtysh
+vtysh -f /vtysh.conf
 
 # Keep running
 tail -f /dev/null

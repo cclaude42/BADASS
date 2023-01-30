@@ -33,9 +33,11 @@ brctl addif br0 vxlan10
 # Up bridge
 ip link set dev vxlan10 up
 
-# Configure vtysh
-vtysh << EOF
-conf t
+# Wait for services
+sleep 5
+
+# Write conf file
+cat << EOF > /vtysh.conf
 hostname router_cclaude-$N
 no ipv6 forwarding
 !
@@ -59,6 +61,9 @@ router bgp 1
 router ospf
 !
 EOF
+
+# Configure vtysh
+vtysh -f /vtysh.conf
 
 # Keep running
 tail -f /dev/null
