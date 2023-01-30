@@ -45,5 +45,5 @@ sudo usermod -aG docker $USER
 newgrp docker
 
 # Build images
-cd p1
+cd docker
 bash build.sh
