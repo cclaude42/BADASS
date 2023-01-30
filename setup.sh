@@ -11,7 +11,7 @@ sudo pip3 install gns3-server gns3-gui
 
 # Install Ubridge
 cd /tmp
-sudo apt install -y -qq git build-essential pcaputils  libpcap-dev
+sudo apt install -y -qq git build-essential pcaputils libpcap-dev
 git clone https://github.com/GNS3/ubridge.git
 cd ubridge
 sudo make install
@@ -33,3 +33,16 @@ mkdir build
 cd build
 cmake ..
 sudo make install
+
+# Install xterm
+sudo apt install -y -qq xterm
+
+# Install Docker
+curl -sSL https://get.docker.com/ | VERSION=20.10.22 sh
+sudo groupadd -f docker
+sudo usermod -aG docker $USER
+newgrp docker
+
+# Build images
+cd p1
+bash build.sh
