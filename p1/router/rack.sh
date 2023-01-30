@@ -35,6 +35,7 @@ ip link set dev vxlan10 up
 
 # Configure vtysh
 vtysh << EOF
+conf t
 hostname router_cclaude-$N
 no ipv6 forwarding
 !

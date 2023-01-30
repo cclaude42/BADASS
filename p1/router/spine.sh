@@ -5,6 +5,7 @@
 
 # Configure vtysh
 vtysh << EOF
+conf t
 hostname router_cclaude-1
 no ipv6 forwarding
 !
