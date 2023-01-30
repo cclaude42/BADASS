@@ -1,4 +1,5 @@
 #!/bin/bash
+# A script to setup a Debian bullseye VM for the project
 
 # Install GNS3
 sudo apt update

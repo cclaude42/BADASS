@@ -1,4 +1,5 @@
 #!/bin/bash
+# A script to set up the EVPN of the top router (spine) in P3
 
 # Start FRR
 /usr/lib/frr/docker-start &
@@ -12,13 +13,13 @@ hostname router_cclaude-1
 no ipv6 forwarding
 !
 interface eth0
- ip address 10.1.1.5/30
+ ip address 10.1.1.1/30
 !
 interface eth1
- ip address 10.1.1.6/30
+ ip address 10.1.1.5/30
 !
 interface eth2
- ip address 10.1.1.7/30
+ ip address 10.1.1.9/30
 !
 interface lo
  ip address 1.1.1.1/32

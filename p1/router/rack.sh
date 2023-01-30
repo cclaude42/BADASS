@@ -1,4 +1,5 @@
 #!/bin/bash
+# A script to set up the EVPN of the middle routers (top-rack) in P3
 
 if [ $# -eq 0 ]; then
     echo "No arguments supplied"
@@ -7,10 +8,13 @@ fi
 
 if [ $1 = "2" ]; then
     N=2
+    SUB=2
 elif [ $1 = "3" ]; then
     N=3
+    SUB=6
 elif [ $1 = "4" ]; then
     N=4
+    SUB=10
 else
     exit
 fi
@@ -19,7 +23,7 @@ fi
 /usr/lib/frr/docker-start &
 
 # Create bridge
-ip link add br0 type bridge # brctl addbr br0
+ip link add br0 type bridge
 ip link set dev br0 up
 
 # Create VXLAN
@@ -42,7 +46,7 @@ hostname router_cclaude-$N
 no ipv6 forwarding
 !
 interface eth0
- ip address 10.1.1.$N/30
+ ip address 10.1.1.$SUB/30
  ip ospf area 0
 !
 interface lo

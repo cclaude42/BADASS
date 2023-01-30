@@ -1,4 +1,5 @@
 #!/bin/bash
+# A script to set up the VXLAN of the routers in P2
 
 if [ $# -eq 0 ]; then
     echo "No arguments supplied"
@@ -19,7 +20,7 @@ fi
 /usr/lib/frr/docker-start &
 
 # Create bridge
-ip link add br0 type bridge # brctl addbr br0
+ip link add br0 type bridge
 ip link set dev br0 up
 
 # Give IP to eth0
